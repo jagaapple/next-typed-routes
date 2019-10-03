@@ -1,1 +1,1 @@
-console.log("Hello!");
+export const getOne = () => 1;
