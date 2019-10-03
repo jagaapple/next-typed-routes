@@ -29,7 +29,13 @@
     "type": "git",
     "url": "https://github.com/jagaapple/next-typed-routes.git"
   },
-  "scripts": {},
+  "scripts": {
+    "prebuild": "rm -rf ./lib",
+    "build": "tsc -p ./tsconfig.json",
+    "lint": "eslint ./src/**/*.ts",
+    "fix": "eslint --fix ./src/**/*.ts",
+    "prepublishOnly": "npm run build"
+  },
   "config": {},
   "dependencies": {},
   "devDependencies": {
