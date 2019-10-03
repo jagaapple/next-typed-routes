@@ -1,0 +1,43 @@
+{
+  "name": "next-typed-routes",
+  "version": "0.0.1",
+  "description": "Type safe route utilities for Next.js.",
+  "keywords": [
+    "next.js",
+    "routes",
+    "router",
+    "routing",
+    "redirect",
+    "typescript"
+  ],
+  "homepage": "https://github.com/jagaapple/next-typed-routes",
+  "bugs": "https://github.com/jagaapple/next-typed-routes/issues",
+  "license": "MIT",
+  "author": "Jaga Apple",
+  "contributors": [],
+  "files": [
+    "lib",
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "main": "lib/index.js",
+  "bin": "",
+  "man": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jagaapple/next-typed-routes.git"
+  },
+  "scripts": {},
+  "config": {},
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {},
+  "engines": {
+    "node": ">=10.15.3"
+  },
+  "engineStrict": false,
+  "preferGlobal": true,
+  "private": true
+}
