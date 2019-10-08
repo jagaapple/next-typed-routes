@@ -1,1 +1,1 @@
-export const getOne = () => 1;
+export * from "./route-creator";
