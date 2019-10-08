@@ -40,7 +40,9 @@
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "config": {},
-  "dependencies": {},
+  "dependencies": {
+    "query-string": "^6.8.3"
+  },
   "devDependencies": {
     "@types/chai": "^4.2.3",
     "@types/mocha": "^5.2.7",
