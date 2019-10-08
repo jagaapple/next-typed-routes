@@ -1,8 +1,17 @@
 import * as queryString from "query-string";
 
 export const createRoute = (
+  /** A page of Next.js. This is a path of files in `/pages` in general. */
   path: string,
+  /**
+   * An object for dynamic parameters.
+   * @default {}
+   */
   parameters: Record<string, number | string | undefined | null> = {},
+  /**
+   * An object for query string.
+   * @default {}
+   */
   queryParameters: Record<string, number | string | boolean | null | undefined> = {},
 ) => {
   const pagePath = path.replace(/^\/*/, "/");
