@@ -1,5 +1,7 @@
 import * as queryString from "query-string";
 
+import { QueryParameters } from "./common-types";
+
 export const createRoute = (
   /** A page of Next.js. This is a path of files in `/pages` in general. */
   path: string,
@@ -12,7 +14,7 @@ export const createRoute = (
    * An object for query string.
    * @default {}
    */
-  queryParameters: Record<string, number | string | boolean | null | undefined> = {},
+  queryParameters: QueryParameters = {},
 ) => {
   const pagePath = path.replace(/^\/*/, "/");
   const completedURISegments: string[] = [];

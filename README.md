@@ -28,6 +28,19 @@ export default () => (
     <a>Go to the user page (id: {targetUserId})</a>
   </Link>
 );
+
+// And it is possible to redirect URL for unviersal (client and server-side)!
+import Router from "next/router";
+import { createPageMover } from "next-typed-routes";
+
+const movePage = createPageMover("https://you-project.example.com", Router);
+
+...
+Component.getInitialProps = async ({ res }) => {
+  // Redirect to `/users/123&limit=30` .
+  // This works fine on web browsers and server-side.
+  movePage(routes.usersDetail(123), { res, queryParameters: { limit: 30 } })
+};
 ```
 
 <div align="center">
@@ -52,8 +65,11 @@ export default () => (
   - [Routes](#routes)
     - [Arguments of `createRoute`](#arguments-of-createroute)
     - [Key names](#key-names)
+  - [Page Mover](#page-mover)
 - [API](#api)
   - [`createRoute(path, parameters, queryParameters): { href: string, as: string }`](#createroutepath-parameters-queryparameters--href-string-as-string-)
+  - [`createPageMover(baseURI, Router): PageMover`](#createpagemoverbaseuri-router-pagemover)
+  - [`movePage(path, options): void`](#movepagepath-options-void)
 - [Contributing to next-typed-routes](#contributing-to-next-typed-routes)
 - [License](#license)
 
@@ -83,7 +99,7 @@ you can create links type safely.
 
 ## Quick Start
 ### Requirements
-- Node.js 8.0.0 or higher
+- Node.js 10.0.0 or higher
 - npm or Yarn
 - **Next.js 9 or higher**
 
@@ -171,6 +187,28 @@ export const routes = {
 You can freely name keys of `routes` , but I recommend you to adopt the same with page file path for key names in order to reduce
 the thinking time to name them.
 
+### Page Mover
+```ts
+import Router from "next/router";
+import { createPageMover } from "next-typed-routes";
+
+const movePage = createPageMover("https://you-project.example.com", Router);
+
+movePage("/about");
+movePage(createRoute("/"));
+```
+
+next-typed-routes provides a function to reidrect to a specific page using `createRoute` . This works fine on cliet-side (web browsers)
+and server-side.
+
+If you want to support server-side, you must give `res` object from `getInitialProps` arguments.
+
+```ts
+Component.getInitialProps = async ({ res }) => {
+  movePage("/about", { res });
+};
+```
+
 
 ## API
 ### `createRoute(path, parameters, queryParameters): { href: string, as: string }`
@@ -183,14 +221,56 @@ createRoute("/users/[userId]/items/[itemId]", { userId: 1, itemId: 2 })
 Returns an object for `<Link>` component props.
 
 - `path: string`
-  - Required.
-  - A page of Next.js. This is a path of files in `/pages` in general.
+  - Required
+  - A page of Next.js. This is a path of files in `/pages` in general
 - `parameters: { [key: string]: number | string | undefined | null }`
-  - Optional, default is `{}` .
-  - You can give dynamic parameters as object.
-- `queryParameters: { [key: string]: number | string | boolean | null | undefined }`
-  - Optional, default is `{}` .
-  - You can give query string as object.
+  - Optional, default is `{}`
+  - You can give dynamic parameters as object
+- `queryParameters: { [key: string]: number | string | boolean | undefined | null }`
+  - Optional, default is `{}`
+  - You can give query string as object
+
+### `createPageMover(baseURI, Router): PageMover`
+```ts
+createPageMover("https://you-project.example.com", Router);
+createPageMover(new URL("https://you-project.example.com"), Router);
+```
+
+Returns a function to redirect URL.
+
+- `baseURI: string | URL`
+  - Required
+  - Your project base URI
+- `Router: NextRouter`
+  - Required
+  - Give Router object from `next/router` in your project
+
+### `movePage(path, options): void`
+```ts
+movePage("/about");
+movePage(createRoute("/about"));
+
+movePage("/about", { res, statusCode: 301 });
+movePage("/about", { res, queryParameters: { limit: 30 } });
+```
+
+This function is created from `createPageMover` .
+
+- `path: string | { href: string, as: string }`
+  - Required
+  - A destination path
+  - It is possible to give a return value from `createRoute`
+- `options: Options`
+  - Optional, default is `{}`
+  - `res: ServerResponse`
+    - Required if you want to support server-side redirect
+    - A sever response object for server-side
+    - It is possible to get a context object which contains this from Next.js `getInitialProps` arguments
+  - `queryParameters: { [key: string]: number | string | boolean | undefined | null }`
+    - An object for query string
+    - If `path` already has query string, it will be merged with `queryParameters`
+  - `statusCode: 301 | 302`
+    - A status code for server-side
 
 
 ## Contributing to next-typed-routes
