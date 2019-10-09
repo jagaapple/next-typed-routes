@@ -22,7 +22,7 @@ export const createRoute = (
   const segments = pagePath.split("/");
   segments.forEach((segment: string) => {
     const newSegment = (() => {
-      const matches = segment.match(/_(.*?)_/);
+      const matches = segment.match(/\[(.*?)\]/);
       if (matches == undefined) return segment;
 
       const parameterName = matches[1];

@@ -24,13 +24,13 @@ describe("route-creator.ts", function() {
 
   context("when parameters are required and fills them,", function() {
     it('should return "href" and completed URI as "as"', function() {
-      expect(createRoute("/tags/_tagName_", { tagName: "dummy-name" })).to.eql({
-        href: "/tags/_tagName_",
+      expect(createRoute("/tags/[tagName]", { tagName: "dummy-name" })).to.eql({
+        href: "/tags/[tagName]",
         as: "/tags/dummy-name",
       });
-      expect(createRoute("/posts/_postId_", { postId: 123 })).to.eql({ href: "/posts/_postId_", as: "/posts/123" });
-      expect(createRoute("/posts/_postId_/_commentId_", { postId: 123, commentId: 456 })).to.eql({
-        href: "/posts/_postId_/_commentId_",
+      expect(createRoute("/posts/[postId]", { postId: 123 })).to.eql({ href: "/posts/[postId]", as: "/posts/123" });
+      expect(createRoute("/posts/[postId]/[commentId]", { postId: 123, commentId: 456 })).to.eql({
+        href: "/posts/[postId]/[commentId]",
         as: "/posts/123/456",
       });
     });
@@ -38,11 +38,11 @@ describe("route-creator.ts", function() {
 
   context("when parameters are required and lacks them,", function() {
     it('should return "href" and incompleted URI as "as"', function() {
-      expect(createRoute("/tags/_tagName_")).to.eql({ href: "/tags/_tagName_", as: "/tags/_tagName_" });
-      expect(createRoute("/posts/_postId_", { dummy: 123 })).to.eql({ href: "/posts/_postId_", as: "/posts/_postId_" });
-      expect(createRoute("/posts/_postId_/_commentId_", { postId: 123 })).to.eql({
-        href: "/posts/_postId_/_commentId_",
-        as: "/posts/123/_commentId_",
+      expect(createRoute("/tags/[tagName]")).to.eql({ href: "/tags/[tagName]", as: "/tags/[tagName]" });
+      expect(createRoute("/posts/[postId]", { dummy: 123 })).to.eql({ href: "/posts/[postId]", as: "/posts/[postId]" });
+      expect(createRoute("/posts/[postId]/[commentId]", { postId: 123 })).to.eql({
+        href: "/posts/[postId]/[commentId]",
+        as: "/posts/123/[commentId]",
       });
     });
   });
@@ -55,17 +55,17 @@ describe("route-creator.ts", function() {
         href: "/example/example?a=1&b=2",
         as: "/example/example?a=1&b=2",
       });
-      expect(createRoute("/tags/_tagName_", undefined, queryParameters)).to.eql({
-        href: "/tags/_tagName_?a=1&b=2",
-        as: "/tags/_tagName_?a=1&b=2",
+      expect(createRoute("/tags/[tagName]", undefined, queryParameters)).to.eql({
+        href: "/tags/[tagName]?a=1&b=2",
+        as: "/tags/[tagName]?a=1&b=2",
       });
-      expect(createRoute("/posts/_postId_", { dummy: 123 }, queryParameters)).to.eql({
-        href: "/posts/_postId_?a=1&b=2",
-        as: "/posts/_postId_?a=1&b=2",
+      expect(createRoute("/posts/[postId]", { dummy: 123 }, queryParameters)).to.eql({
+        href: "/posts/[postId]?a=1&b=2",
+        as: "/posts/[postId]?a=1&b=2",
       });
-      expect(createRoute("/posts/_postId_/_commentId_", { postId: 123 }, queryParameters)).to.eql({
-        href: "/posts/_postId_/_commentId_?a=1&b=2",
-        as: "/posts/123/_commentId_?a=1&b=2",
+      expect(createRoute("/posts/[postId]/[commentId]", { postId: 123 }, queryParameters)).to.eql({
+        href: "/posts/[postId]/[commentId]?a=1&b=2",
+        as: "/posts/123/[commentId]?a=1&b=2",
       });
     });
   });
@@ -78,17 +78,17 @@ describe("route-creator.ts", function() {
         href: "/example/example?a=1&c=2",
         as: "/example/example?a=1&c=2",
       });
-      expect(createRoute("/tags/_tagName_", undefined, queryParameters)).to.eql({
-        href: "/tags/_tagName_?a=1&c=2",
-        as: "/tags/_tagName_?a=1&c=2",
+      expect(createRoute("/tags/[tagName]", undefined, queryParameters)).to.eql({
+        href: "/tags/[tagName]?a=1&c=2",
+        as: "/tags/[tagName]?a=1&c=2",
       });
-      expect(createRoute("/posts/_postId_", { dummy: 123 }, queryParameters)).to.eql({
-        href: "/posts/_postId_?a=1&c=2",
-        as: "/posts/_postId_?a=1&c=2",
+      expect(createRoute("/posts/[postId]", { dummy: 123 }, queryParameters)).to.eql({
+        href: "/posts/[postId]?a=1&c=2",
+        as: "/posts/[postId]?a=1&c=2",
       });
-      expect(createRoute("/posts/_postId_/_commentId_", { postId: 123 }, queryParameters)).to.eql({
-        href: "/posts/_postId_/_commentId_?a=1&c=2",
-        as: "/posts/123/_commentId_?a=1&c=2",
+      expect(createRoute("/posts/[postId]/[commentId]", { postId: 123 }, queryParameters)).to.eql({
+        href: "/posts/[postId]/[commentId]?a=1&c=2",
+        as: "/posts/123/[commentId]?a=1&c=2",
       });
     });
   });
@@ -101,17 +101,17 @@ describe("route-creator.ts", function() {
         href: "/example/example?a=1&b&c=2",
         as: "/example/example?a=1&b&c=2",
       });
-      expect(createRoute("/tags/_tagName_", undefined, queryParameters)).to.eql({
-        href: "/tags/_tagName_?a=1&b&c=2",
-        as: "/tags/_tagName_?a=1&b&c=2",
+      expect(createRoute("/tags/[tagName]", undefined, queryParameters)).to.eql({
+        href: "/tags/[tagName]?a=1&b&c=2",
+        as: "/tags/[tagName]?a=1&b&c=2",
       });
-      expect(createRoute("/posts/_postId_", { dummy: 123 }, queryParameters)).to.eql({
-        href: "/posts/_postId_?a=1&b&c=2",
-        as: "/posts/_postId_?a=1&b&c=2",
+      expect(createRoute("/posts/[postId]", { dummy: 123 }, queryParameters)).to.eql({
+        href: "/posts/[postId]?a=1&b&c=2",
+        as: "/posts/[postId]?a=1&b&c=2",
       });
-      expect(createRoute("/posts/_postId_/_commentId_", { postId: 123 }, queryParameters)).to.eql({
-        href: "/posts/_postId_/_commentId_?a=1&b&c=2",
-        as: "/posts/123/_commentId_?a=1&b&c=2",
+      expect(createRoute("/posts/[postId]/[commentId]", { postId: 123 }, queryParameters)).to.eql({
+        href: "/posts/[postId]/[commentId]?a=1&b&c=2",
+        as: "/posts/123/[commentId]?a=1&b&c=2",
       });
     });
   });
@@ -124,17 +124,17 @@ describe("route-creator.ts", function() {
         href: "/example/example?a=1&b=false&c=2&d=true",
         as: "/example/example?a=1&b=false&c=2&d=true",
       });
-      expect(createRoute("/tags/_tagName_", undefined, queryParameters)).to.eql({
-        href: "/tags/_tagName_?a=1&b=false&c=2&d=true",
-        as: "/tags/_tagName_?a=1&b=false&c=2&d=true",
+      expect(createRoute("/tags/[tagName]", undefined, queryParameters)).to.eql({
+        href: "/tags/[tagName]?a=1&b=false&c=2&d=true",
+        as: "/tags/[tagName]?a=1&b=false&c=2&d=true",
       });
-      expect(createRoute("/posts/_postId_", { dummy: 123 }, queryParameters)).to.eql({
-        href: "/posts/_postId_?a=1&b=false&c=2&d=true",
-        as: "/posts/_postId_?a=1&b=false&c=2&d=true",
+      expect(createRoute("/posts/[postId]", { dummy: 123 }, queryParameters)).to.eql({
+        href: "/posts/[postId]?a=1&b=false&c=2&d=true",
+        as: "/posts/[postId]?a=1&b=false&c=2&d=true",
       });
-      expect(createRoute("/posts/_postId_/_commentId_", { postId: 123 }, queryParameters)).to.eql({
-        href: "/posts/_postId_/_commentId_?a=1&b=false&c=2&d=true",
-        as: "/posts/123/_commentId_?a=1&b=false&c=2&d=true",
+      expect(createRoute("/posts/[postId]/[commentId]", { postId: 123 }, queryParameters)).to.eql({
+        href: "/posts/[postId]/[commentId]?a=1&b=false&c=2&d=true",
+        as: "/posts/123/[commentId]?a=1&b=false&c=2&d=true",
       });
     });
   });
