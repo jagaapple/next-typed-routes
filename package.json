@@ -20,6 +20,7 @@
     "CHANGELOG.md",
     "CODE_OF_CONDUCT.md",
     "LICENSE",
+    "package.json",
     "README.md"
   ],
   "main": "lib/index.js",
