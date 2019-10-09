@@ -1,6 +1,6 @@
 {
   "name": "next-typed-routes",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Type safe route utilities for Next.js.",
   "keywords": [
     "next.js",
@@ -20,6 +20,7 @@
     "CHANGELOG.md",
     "CODE_OF_CONDUCT.md",
     "LICENSE",
+    "package.json",
     "README.md"
   ],
   "main": "lib/index.js",
@@ -68,5 +69,5 @@
   },
   "engineStrict": false,
   "preferGlobal": true,
-  "private": true
+  "private": false
 }
