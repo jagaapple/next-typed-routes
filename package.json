@@ -1,6 +1,6 @@
 {
   "name": "next-typed-routes",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Type safe route utilities for Next.js.",
   "keywords": [
     "next.js",
