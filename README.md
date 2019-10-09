@@ -99,7 +99,7 @@ you can create links type safely.
 
 ## Quick Start
 ### Requirements
-- Node.js 8.0.0 or higher
+- Node.js 10.0.0 or higher
 - npm or Yarn
 - **Next.js 9 or higher**
 
