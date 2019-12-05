@@ -42,26 +42,26 @@
   },
   "config": {},
   "dependencies": {
-    "query-string": "^6.8.3"
+    "query-string": "^6.9.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.3",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.7.11",
     "@types/sinon": "^7.5.0",
-    "@typescript-eslint/eslint-plugin": "^2.3.2",
-    "@typescript-eslint/parser": "^2.3.2",
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
     "chai": "^4.2.0",
     "codecov": "^3.6.1",
-    "eslint": "^6.5.1",
-    "eslint-config-prettier": "^6.3.0",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.1",
     "mocha": "^6.2.1",
     "nyc": "^14.1.1",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "sinon": "^7.5.0",
-    "ts-node": "^8.4.1",
-    "typescript": "^3.6.3"
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3"
   },
   "peerDependencies": {},
   "engines": {
