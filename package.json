@@ -32,7 +32,7 @@
   },
   "scripts": {
     "prebuild": "rm -rf ./lib",
-    "build": "tsc -p ./tsconfig.json",
+    "build": "tsc",
     "lint": "eslint ./src/**/*.ts",
     "fix": "eslint --fix ./src/**/*.ts",
     "prepublishOnly": "npm run build",
