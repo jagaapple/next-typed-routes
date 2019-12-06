@@ -6,7 +6,7 @@
     "baseUrl": "./",
     "declaration": true,
     "lib": [
-      "es2018",
+      "es2020",
       "dom"
     ],
     "module": "commonjs",
@@ -23,6 +23,7 @@
     "./src/**/*"
   ],
   "exclude": [
+    "node_modules",
     "./src/**/*.spec.ts"
   ]
 }

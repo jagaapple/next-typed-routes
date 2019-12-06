@@ -32,5 +32,4 @@ npm-debug.log
 lib
 
 # Generated files created by tests.
-.nyc_output
 coverage
