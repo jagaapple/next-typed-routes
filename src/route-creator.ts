@@ -27,7 +27,7 @@ export const createRoute = (
 
       const parameterName = matches[1];
 
-      return parameters[parameterName] || segment;
+      return parameters[parameterName] ?? segment;
     })();
 
     completedURISegments.push(newSegment.toString());

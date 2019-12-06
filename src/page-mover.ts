@@ -52,8 +52,8 @@ export const createPageMover = (
 
   // For server.
   const aliasURL = new URL(alias, baseURI);
-  const queryString = mergeQueryString(aliasURL, options.queryParameters || {});
+  const queryString = mergeQueryString(aliasURL, options.queryParameters ?? {});
   const url = new URL(queryString.length > 0 ? `${aliasURL.pathname}?${queryString}` : alias, baseURI);
-  res.writeHead(options.statusCode || 302, { Location: url.toString() });
+  res.writeHead(options.statusCode ?? 302, { Location: url.toString() });
   res.end();
 };
