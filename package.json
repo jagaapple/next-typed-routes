@@ -36,30 +36,28 @@
     "lint": "eslint ./src/**/*.ts",
     "fix": "eslint --fix ./src/**/*.ts",
     "prepublishOnly": "npm run build",
-    "pretest": "rm -rf ./.nyc_output ./coverage",
-    "test": "nyc --reporter=text --reporter=html mocha --reporter=dot src/**/*.spec.ts",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+    "test": "jest --coverage",
+    "coverage": "codecov",
+    "clean": "rm -rf ./lib ./coverage"
   },
   "config": {},
   "dependencies": {
     "query-string": "^6.9.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.3",
-    "@types/mocha": "^5.2.7",
+    "@types/jest": "^24.0.23",
+    "@types/jest-plugin-context": "^2.9.2",
     "@types/node": "^12.7.11",
-    "@types/sinon": "^7.5.0",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
-    "chai": "^4.2.0",
     "codecov": "^3.6.1",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.1",
-    "mocha": "^6.2.1",
-    "nyc": "^14.1.1",
+    "jest": "^24.9.0",
+    "jest-plugin-context": "^2.9.0",
     "prettier": "^1.19.1",
-    "sinon": "^7.5.0",
+    "ts-jest": "^24.2.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.3"
   },
