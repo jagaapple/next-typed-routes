@@ -136,4 +136,23 @@ describe("createRoute", () => {
       });
     });
   });
+
+  context("when parameters or specifying query parameters contain zero", () => {
+    it("should contain zero as the parameters", () => {
+      const queryParameters = { a: 0 };
+
+      expect(createRoute("/example/example", undefined, queryParameters)).toEqual({
+        href: "/example/example?a=0",
+        as: "/example/example?a=0",
+      });
+      expect(createRoute("/posts/[postId]", { postId: 0 }, queryParameters)).toEqual({
+        href: "/posts/[postId]?a=0",
+        as: "/posts/0?a=0",
+      });
+      expect(createRoute("/posts/[postId]/[commentId]", { postId: 0, commentId: 0 }, queryParameters)).toEqual({
+        href: "/posts/[postId]/[commentId]?a=0",
+        as: "/posts/0/0?a=0",
+      });
+    });
+  });
 });
