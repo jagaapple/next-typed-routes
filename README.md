@@ -23,22 +23,16 @@ import { routes } from "../routes.ts";
 
 const targetUserId = 5;
 
-export default () => (
+const Page () => (
   <Link {...routes.usersDetail(targetUserId)}>
     <a>Go to the user page (id: {targetUserId})</a>
   </Link>
 );
 
-// And it is possible to redirect URL for unviersal (client and server-side)!
-import Router from "next/router";
-import { createPageMover } from "next-typed-routes";
-
-const movePage = createPageMover("https://you-project.example.com", Router);
-
 ...
-Component.getInitialProps = async ({ res }) => {
+Page.getInitialProps = async ({ res }) => {
   // Redirect to `/users/123&limit=30` .
-  // This works fine on web browsers and server-side.
+  // This works fine on client-side and server-side.
   movePage(routes.usersDetail(123), { res, queryParameters: { limit: 30 } })
 };
 ```
@@ -78,12 +72,12 @@ Component.getInitialProps = async ({ res }) => {
 
 ## Features
 
-| FEATURES                           | WHAT YOU CAN DO                                                 |
-|------------------------------------|-----------------------------------------------------------------|
-| ❤️ **Designed for Next.js**         | You can use Next.js built-in routing system                     |
-| 🌐 **Build for Universal**         | Ready for Universal JavaScript                                  |
-| 📄 **Write once, Manage one file** | All you need is write routes to one file                        |
-| 🎩 **Type Safe**                   | You can get errors when missing required dynamic URL parameters |
+| FEATURES                           | WHAT YOU CAN DO                                          |
+|------------------------------------|----------------------------------------------------------|
+| ❤️ **Designed for Next.js**         | You can use Next.js routing system without custom server |
+| 🌐 **Build for Universal**         | Ready for Universal JavaScript                           |
+| 📄 **Write once, Manage one file** | All you need is write routes to one file                 |
+| 🎩 **Type Safe**                   | You can use with TypeScript                              |
 
 ### Motivation
 Next.js 9 is the first version to support dynamic routing without any middleware. It is so useful and easy to use, and it supports
@@ -99,17 +93,17 @@ you can create links type safely.
 
 ## Quick Start
 ### Requirements
-- Node.js 10.0.0 or higher
 - npm or Yarn
-- **Next.js 9 or higher**
+- Node.js 10.0.0 or higher
+- **Next.js 9.0.0 or higher**
 
 
 ### Installation
 ```bash
-$ npm install --save-dev next-typed-routes
+$ npm install next-typed-routes
 ```
 
-If you use Yarn, use the following command.
+If you are using Yarn, use the following command.
 
 ```bash
 $ yarn add --dev next-typed-routes
@@ -132,11 +126,11 @@ export const routes = {
 };
 ```
 
-First, you need to define routes using next-typed-routes.
+Firstly, you need to define routes using next-typed-routes.
 
 `createRoute` function exported from next-typed-routes returns an object for `<Link>` component props, which has `href` and `as`
 properties.
-So when you manage values created by `createRoute` by keys, you can get `<Link>` component props via the keys like the following.
+So when you manage values created by `createRoute`, you can get `<Link>` component props via the keys like the following.
 
 ```tsx
 <Link {...routes.top}>
