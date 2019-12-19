@@ -106,7 +106,7 @@ $ npm install next-typed-routes
 If you are using Yarn, use the following command.
 
 ```bash
-$ yarn add --dev next-typed-routes
+$ yarn add next-typed-routes
 ```
 
 
